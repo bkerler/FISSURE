@@ -67,3 +67,7 @@
 [submodule "Custom_Blocks/maint-3.10/libbtbb"]
 	path = Custom_Blocks/maint-3.10/libbtbb
 	url = https://github.com/greatscottgadgets/libbtbb
+[submodule "Custom_Blocks/maint-3.10/gr-limesdr"]
+	path = Custom_Blocks/maint-3.10/gr-limesdr
+	url = https://github.com/bkerler/gr-limesdr
+	branch = maint-3.10
