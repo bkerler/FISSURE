@@ -1,0 +1,69 @@
+[submodule "Custom_Blocks/maint-3.10/gr-adsb"]
+	path = Custom_Blocks/maint-3.10/gr-adsb
+	url = https://github.com/bkerler/gr-adsb
+	branch = maint-3.10
+[submodule "Custom_Blocks/maint-3.10/gr-ais"]
+	path = Custom_Blocks/maint-3.10/gr-ais
+	url = https://github.com/bkerler/gr-ais
+	branch = maint-3.10
+[submodule "Custom_Blocks/maint-3.10/gr-dect2"]
+	path = Custom_Blocks/maint-3.10/gr-dect2
+	url = https://github.com/bkerler/gr-dect2
+	branch = maint-3.10
+[submodule "Custom_Blocks/maint-3.10/gr-foo"]
+	path = Custom_Blocks/maint-3.10/gr-foo
+	url = https://github.com/bastibl/gr-foo
+	branch = maint-3.10
+[submodule "Custom_Blocks/maint-3.10/gr-gsm"]
+	path = Custom_Blocks/maint-3.10/gr-gsm
+	url = https://github.com/bkerler/gr-gsm
+	branch = maint-3.10
+[submodule "Custom_Blocks/maint-3.10/gr-ieee802-11"]
+	path = Custom_Blocks/maint-3.10/gr-ieee802-11
+	url = https://github.com/bastibl/gr-ieee802-11
+	branch = maint-3.10
+[submodule "Custom_Blocks/maint-3.10/gr-ieee802-15-4"]
+	path = Custom_Blocks/maint-3.10/gr-ieee802-15-4
+	url = https://github.com/bkerler/gr-ieee802-15-4
+	branch = maint-3.10
+[submodule "Custom_Blocks/maint-3.10/gr-iridium"]
+	path = Custom_Blocks/maint-3.10/gr-iridium
+	url = https://github.com/bkerler/gr-iridium
+	branch = maint-3.10
+[submodule "Custom_Blocks/maint-3.10/gr-j2497"]
+	path = Custom_Blocks/maint-3.10/gr-j2497
+	url = https://github.com/bkerler/gr-j2497
+	branch = maint-3.10
+[submodule "Custom_Blocks/maint-3.10/gr-paint"]
+	path = Custom_Blocks/maint-3.10/gr-paint
+	url = https://github.com/drmpeg/gr-paint
+[submodule "Custom_Blocks/maint-3.10/gr-rds"]
+	path = Custom_Blocks/maint-3.10/gr-rds
+	url = https://github.com/bastibl/gr-rds
+	branch = maint-3.10
+[submodule "Custom_Blocks/maint-3.10/gr-tpms_poore"]
+	path = Custom_Blocks/maint-3.10/gr-tpms_poore
+	url = https://github.com/bkerler/gr-tpms_poore
+	branch = maint-3.10
+[submodule "Custom_Blocks/maint-3.10/gr-X10"]
+	path = Custom_Blocks/maint-3.10/gr-X10
+	url = https://github.com/bkerler/gr-X10
+	branch = maint-3.10
+[submodule "Custom_Blocks/maint-3.10/gr-zwave_poore"]
+	path = Custom_Blocks/maint-3.10/gr-zwave_poore
+	url = https://github.com/bkerler/gr-zwave_poore
+	branch = maint-3.10
+[submodule "Custom_Blocks/maint-3.10/gr-garage_door"]
+	path = Custom_Blocks/maint-3.10/gr-garage_door
+	url = https://github.com/bkerler/gr-garage_door
+	branch = maint-3.10
+[submodule "Custom_Blocks/maint-3.10/gr-clapper_plus"]
+	path = Custom_Blocks/maint-3.10/gr-clapper_plus
+	url = https://github.com/bkerler/gr-clapper_plus
+	branch = maint-3.10
+[submodule "Custom_Blocks/maint-3.10/gr-nrsc5"]
+	path = Custom_Blocks/maint-3.10/gr-nrsc5
+	url = https://github.com/argilo/gr-nrsc5
+[submodule "Custom_Blocks/maint-3.10/libbtbb"]
+	path = Custom_Blocks/maint-3.10/libbtbb
+	url = https://github.com/greatscottgadgets/libbtbb
