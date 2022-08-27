@@ -71,3 +71,24 @@
 	path = Custom_Blocks/maint-3.10/gr-limesdr
 	url = https://github.com/bkerler/gr-limesdr
 	branch = maint-3.10
+[submodule "Tools/dump1090"]
+	path = Tools/dump1090
+	url = https://github.com/antirez/dump1090
+[submodule "Tools/iridiumlive"]
+	path = Tools/iridiumlive
+	url = https://github.com/microp11/iridiumlive
+[submodule "Tools/ESP8266_Deauther_v2"]
+	path = Tools/ESP8266_Deauther_v2
+	url = https://github.com/SpacehuhnTech/esp8266_deauther
+[submodule "Tools/retrogram-rtlstr-master"]
+	path = Tools/retrogram-rtlstr-master
+	url = https://github.com/r4d10n/retrogram-rtlsdr
+[submodule "Tools/rtl-zwave-master"]
+	path = Tools/rtl-zwave-master
+	url = https://github.com/andersesbensen/rtl-zwave
+[submodule "Tools/SdrGlut"]
+	path = Tools/SdrGlut
+	url = https://github.com/righthalfplane/SdrGlut
+[submodule "Tools/v2verifier-master"]
+	path = Tools/v2verifier-master
+	url = https://github.com/twardokus/v2verifier
