@@ -1,6 +1,7 @@
 options:
   parameters:
     author: ''
+    catch_exceptions: 'True'
     category: Custom
     cmake_opt: ''
     comment: ''
@@ -10,7 +11,7 @@ options:
     gen_linking: dynamic
     generate_options: no_gui
     hier_block_src_path: '.:'
-    id: Mode_S_PPM_HackRF_Demod
+    id: Mode_S_PPM_USRPX310_Demod
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -48,12 +49,24 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '50'
+    value: '33'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
     coordinate: [48, 245]
+    rotation: 0
+    state: enabled
+- name: ip_address
+  id: variable
+  parameters:
+    comment: ''
+    value: '"192.168.40.2"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [48, 453]
     rotation: 0
     state: enabled
 - name: samp_rate
@@ -68,18 +81,18 @@ blocks:
     coordinate: [48, 109]
     rotation: 0
     state: enabled
-- name: serial
+- name: threshold
   id: variable
   parameters:
     comment: ''
-    value: '"0"'
+    value: '0.010'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [50, 372]
+    coordinate: [56, 580.0]
     rotation: 0
-    state: enabled
+    state: true
 - name: zmq_port
   id: variable
   parameters:
@@ -89,10 +102,10 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [48, 309]
+    coordinate: [48, 517]
     rotation: 0
     state: enabled
-- name: adsb_decoder_0
+- name: adsb_decoder_0_0
   id: adsb_decoder
   parameters:
     affinity: ''
@@ -101,33 +114,49 @@ blocks:
     error_corr: '"None"'
     maxoutbuf: '0'
     minoutbuf: '0'
-    msg_filter: '"Extended Squitter Only"'
+    msg_filter: '"All Messages"'
     print_level: '"Brief"'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [560, 413]
+    coordinate: [776, 244.0]
     rotation: 0
     state: enabled
-- name: adsb_framer_0
+- name: adsb_demod_0
+  id: adsb_demod
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    fs: samp_rate
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [552, 328.0]
+    rotation: 0
+    state: enabled
+- name: adsb_framer_1
   id: adsb_framer
   parameters:
     affinity: ''
     alias: ''
     comment: ''
-    fs: 2e6
+    fs: samp_rate
     maxoutbuf: '0'
     minoutbuf: '0'
-    threshold: '0.01'
+    threshold: threshold
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [568, 377]
+    coordinate: [328, 332.0]
     rotation: 0
     state: enabled
-- name: blocks_complex_to_mag_squared_0
+- name: blocks_complex_to_mag_squared_0_0
   id: blocks_complex_to_mag_squared
   parameters:
     affinity: ''
@@ -140,95 +169,42 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [496, 89]
+    coordinate: [504, 216.0]
     rotation: 0
     state: enabled
-- name: blocks_file_sink_0
-  id: blocks_file_sink
+- name: blocks_null_sink_0
+  id: blocks_null_sink
   parameters:
     affinity: ''
     alias: ''
-    append: 'True'
+    bus_structure_sink: '[[0,],]'
+    comment: ''
+    num_inputs: '1'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [768, 408.0]
+    rotation: 0
+    state: true
+- name: filerepeater_msg_to_file_0
+  id: filerepeater_msg_to_file
+  parameters:
+    affinity: ''
+    alias: ''
     comment: ''
     file: /dev/stdout
-    type: byte
-    unbuffered: 'True'
-    vlen: '1'
+    overwrite: 'False'
+    timestamp: 'True'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [808, 358]
+    coordinate: [1112, 476.0]
     rotation: 0
-    state: enabled
-- name: blocks_float_to_uchar_0
-  id: blocks_float_to_uchar
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [336, 377]
-    rotation: 0
-    state: enabled
-- name: blocks_message_source_0
-  id: blocks_message_source
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    type: byte
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [808, 321]
-    rotation: 0
-    state: enabled
-- name: blocks_threshold_ff_0
-  id: blocks_threshold_ff
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    high: '0.01'
-    init: '0'
-    low: '0.01'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [336, 302]
-    rotation: 0
-    state: enabled
-- name: digital_correlate_access_code_tag_bb_0
-  id: digital_correlate_access_code_tag_bb
-  parameters:
-    access_code: '1010000101000000'
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    tagname: adsb_preamble
-    threshold: '0'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [520, 302]
-    rotation: 0
-    state: enabled
+    state: true
 - name: osmosdr_source_0
   id: osmosdr_source
   parameters:
@@ -583,29 +559,35 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [240, 19]
+    coordinate: [208, 92.0]
     rotation: 0
     state: enabled
-- name: zeromq_pub_sink_0_0
-  id: zeromq_pub_sink
+- name: zeromq_pub_msg_sink_0
+  id: zeromq_pub_msg_sink
   parameters:
     address: '"tcp://*:" + str(zmq_port)'
     affinity: ''
     alias: ''
+    bind: 'True'
     comment: ''
-    hwm: '-1'
-    pass_tags: 'False'
     timeout: '100'
-    type: byte
-    vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1008, 302]
+    coordinate: [1064, 300.0]
     rotation: 0
     state: enabled
-connections: []
+
+connections:
+- [adsb_decoder_0_0, decoded, filerepeater_msg_to_file_0, msg]
+- [adsb_decoder_0_0, decoded, zeromq_pub_msg_sink_0, in]
+- [adsb_demod_0, '0', blocks_null_sink_0, '0']
+- [adsb_demod_0, demodulated, adsb_decoder_0_0, demodulated]
+- [adsb_framer_1, '0', adsb_demod_0, '0']
+- [blocks_complex_to_mag_squared_0_0, '0', adsb_framer_1, '0']
+- [osmosdr_source_0, '0', blocks_complex_to_mag_squared_0_0, '0']
 
 metadata:
   file_format: 1
+  grc_version: v3.11.0.0git-207-gcaa7e7f1

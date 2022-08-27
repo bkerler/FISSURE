@@ -1,6 +1,7 @@
 options:
   parameters:
     author: ''
+    catch_exceptions: 'True'
     category: Custom
     cmake_opt: ''
     comment: ''
@@ -104,7 +105,7 @@ blocks:
     coordinate: [48, 443]
     rotation: 0
     state: enabled
-- name: adsb_decoder_0
+- name: adsb_decoder_0_0
   id: adsb_decoder
   parameters:
     affinity: ''
@@ -119,10 +120,26 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [560, 413]
+    coordinate: [968, 340.0]
     rotation: 0
     state: enabled
-- name: adsb_framer_0
+- name: adsb_demod_0
+  id: adsb_demod
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    fs: samp_rate
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1000, 208.0]
+    rotation: 0
+    state: enabled
+- name: adsb_framer_0_0
   id: adsb_framer
   parameters:
     affinity: ''
@@ -136,10 +153,10 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [568, 377]
+    coordinate: [792, 124.0]
     rotation: 0
     state: enabled
-- name: blocks_complex_to_mag_squared_0
+- name: blocks_complex_to_mag_squared_0_0
   id: blocks_complex_to_mag_squared
   parameters:
     affinity: ''
@@ -152,77 +169,26 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [496, 89]
+    coordinate: [568, 128.0]
     rotation: 0
     state: enabled
-- name: blocks_file_sink_0
-  id: blocks_file_sink
+- name: blocks_null_sink_1
+  id: blocks_null_sink
   parameters:
     affinity: ''
     alias: ''
-    append: 'True'
+    bus_structure_sink: '[[0,],]'
     comment: ''
-    file: /dev/stdout
-    type: byte
-    unbuffered: 'True'
+    num_inputs: '1'
+    type: float
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [808, 358]
+    coordinate: [1304, 312.0]
     rotation: 0
-    state: enabled
-- name: blocks_file_sink_0_0
-  id: blocks_file_sink
-  parameters:
-    affinity: ''
-    alias: ''
-    append: 'True'
-    comment: ''
-    file: filepath
-    type: byte
-    unbuffered: 'True'
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1008, 302]
-    rotation: 0
-    state: enabled
-- name: blocks_float_to_uchar_0
-  id: blocks_float_to_uchar
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [336, 377]
-    rotation: 0
-    state: enabled
-- name: blocks_message_source_0
-  id: blocks_message_source
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    type: byte
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [808, 321]
-    rotation: 0
-    state: enabled
+    state: true
 - name: blocks_threshold_ff_0
   id: blocks_threshold_ff
   parameters:
@@ -238,27 +204,41 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [336, 302]
+    coordinate: [680, 228.0]
     rotation: 0
     state: enabled
-- name: digital_correlate_access_code_tag_bb_0
-  id: digital_correlate_access_code_tag_bb
+- name: filerepeater_msg_to_file_0
+  id: filerepeater_msg_to_file
   parameters:
-    access_code: '1010000101000000'
     affinity: ''
     alias: ''
     comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    tagname: adsb_preamble
-    threshold: '0'
+    file: /dev/stdout
+    overwrite: 'False'
+    timestamp: 'False'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [520, 302]
+    coordinate: [1288, 436.0]
     rotation: 0
-    state: enabled
+    state: true
+- name: filerepeater_msg_to_file_0_0
+  id: filerepeater_msg_to_file
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    file: filepath
+    overwrite: 'False'
+    timestamp: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1272, 532.0]
+    rotation: 0
+    state: true
 - name: osmosdr_source_0
   id: osmosdr_source
   parameters:
@@ -616,7 +596,17 @@ blocks:
     coordinate: [240, 19]
     rotation: 0
     state: enabled
-connections: []
+
+connections:
+- [adsb_decoder_0_0, decoded, filerepeater_msg_to_file_0, msg]
+- [adsb_decoder_0_0, decoded, filerepeater_msg_to_file_0_0, msg]
+- [adsb_demod_0, '0', blocks_null_sink_1, '0']
+- [adsb_demod_0, demodulated, adsb_decoder_0_0, demodulated]
+- [adsb_framer_0_0, '0', adsb_demod_0, '0']
+- [blocks_complex_to_mag_squared_0_0, '0', blocks_threshold_ff_0, '0']
+- [blocks_threshold_ff_0, '0', adsb_framer_0_0, '0']
+- [osmosdr_source_0, '0', blocks_complex_to_mag_squared_0_0, '0']
 
 metadata:
   file_format: 1
+  grc_version: v3.11.0.0git-207-gcaa7e7f1

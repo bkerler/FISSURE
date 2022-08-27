@@ -1,6 +1,7 @@
 options:
   parameters:
     author: ''
+    catch_exceptions: 'True'
     category: Custom
     cmake_opt: ''
     comment: ''
@@ -51,8 +52,10 @@ blocks:
     gui_hint: ''
     label: frequency
     min_len: '200'
-    orient: Qt.Horizontal
+    orient: QtCore.Qt.Horizontal
+    outputmsgname: value
     rangeType: float
+    showports: 'False'
     start: 88.1e6
     step: .1e6
     stop: 108.1e6
@@ -154,6 +157,7 @@ blocks:
     alias: ''
     audio_decimation: '10'
     comment: ''
+    deemph_tau: 75e-6
     maxoutbuf: '0'
     minoutbuf: '0'
     quad_rate: 480e3
@@ -233,7 +237,7 @@ blocks:
     samp_rate: sample_rate
     type: fir_filter_ccf
     width: 25e3
-    win: firdes.WIN_HAMMING
+    win: window.WIN_HAMMING
   states:
     bus_sink: false
     bus_source: false
@@ -630,3 +634,4 @@ connections:
 
 metadata:
   file_format: 1
+  grc_version: v3.11.0.0git-207-gcaa7e7f1

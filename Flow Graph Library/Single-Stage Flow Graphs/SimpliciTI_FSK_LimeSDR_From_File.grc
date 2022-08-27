@@ -1,6 +1,7 @@
 options:
   parameters:
     author: ''
+    catch_exceptions: 'True'
     category: Custom
     cmake_opt: ''
     comment: ''
@@ -256,6 +257,7 @@ blocks:
     alias: ''
     bt: '0.5'
     comment: ''
+    do_unpack: 'True'
     log: 'False'
     maxoutbuf: '0'
     minoutbuf: '0'
@@ -334,3 +336,4 @@ connections:
 
 metadata:
   file_format: 1
+  grc_version: v3.11.0.0git-207-gcaa7e7f1

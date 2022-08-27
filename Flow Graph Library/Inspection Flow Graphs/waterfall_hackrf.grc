@@ -1,6 +1,7 @@
 options:
   parameters:
     author: ''
+    catch_exceptions: 'True'
     category: Custom
     cmake_opt: ''
     comment: ''
@@ -39,8 +40,10 @@ blocks:
     gui_hint: 2,0,1,4
     label: ' Freq. (MHz):'
     min_len: '200'
-    orient: Qt.Horizontal
+    orient: QtCore.Qt.Horizontal
+    outputmsgname: value
     rangeType: float
+    showports: 'False'
     start: '50'
     step: '.1'
     stop: '6000'
@@ -60,8 +63,10 @@ blocks:
     gui_hint: 1,0,1,4
     label: '              Gain:'
     min_len: '200'
-    orient: Qt.Horizontal
+    orient: QtCore.Qt.Horizontal
+    outputmsgname: value
     rangeType: float
+    showports: 'False'
     start: '0'
     step: '1'
     stop: '47'
@@ -87,6 +92,7 @@ blocks:
     label4: ''
     labels: '["1 MS/s", "5 MS/s", "10 MS/s", "20 MS/s"]'
     num_opts: '0'
+    option0: '0'
     option1: '1'
     option2: '2'
     option3: '3'
@@ -525,7 +531,7 @@ blocks:
     showports: 'True'
     type: complex
     update_time: '0.10'
-    wintype: firdes.WIN_BLACKMAN_hARRIS
+    wintype: window.WIN_BLACKMAN_hARRIS
   states:
     bus_sink: false
     bus_source: false
@@ -539,3 +545,4 @@ connections:
 
 metadata:
   file_format: 1
+  grc_version: v3.11.0.0git-207-gcaa7e7f1

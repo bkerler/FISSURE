@@ -1,6 +1,7 @@
 options:
   parameters:
     author: ''
+    catch_exceptions: 'True'
     category: Custom
     cmake_opt: ''
     comment: ''
@@ -179,6 +180,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
+    en_uvec: 'True'
   states:
     bus_sink: false
     bus_source: false
@@ -270,7 +272,6 @@ blocks:
     analog_bandw_ch1: 5e6
     calibr_bandw_ch0: 5e6
     calibr_bandw_ch1: 5e6
-    ch_align: 'False'
     channel_mode: '0'
     comment: ''
     dacVal: '125'
@@ -507,3 +508,4 @@ connections:
 
 metadata:
   file_format: 1
+  grc_version: v3.11.0.0git-207-gcaa7e7f1

@@ -1,6 +1,7 @@
 options:
   parameters:
     author: ''
+    catch_exceptions: 'True'
     category: Custom
     cmake_opt: ''
     comment: ''
@@ -99,8 +100,10 @@ blocks:
     gui_hint: ''
     label: rx_freq
     min_len: '200'
-    orient: Qt.Horizontal
+    orient: QtCore.Qt.Horizontal
+    outputmsgname: value
     rangeType: float
+    showports: 'False'
     start: 2400e6
     step: 1e6
     stop: 2500e6
@@ -156,8 +159,10 @@ blocks:
     gui_hint: ''
     label: Threshold
     min_len: '200'
-    orient: Qt.Horizontal
+    orient: QtCore.Qt.Horizontal
+    outputmsgname: value
     rangeType: float
+    showports: 'False'
     start: '-120'
     step: '1'
     stop: '50'
@@ -799,3 +804,4 @@ connections:
 
 metadata:
   file_format: 1
+  grc_version: v3.11.0.0git-207-gcaa7e7f1

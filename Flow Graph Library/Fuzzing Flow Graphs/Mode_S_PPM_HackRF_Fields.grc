@@ -1,6 +1,7 @@
 options:
   parameters:
     author: ''
+    catch_exceptions: 'True'
     category: Custom
     cmake_opt: ''
     comment: ''
@@ -10,7 +11,7 @@ options:
     gen_linking: dynamic
     generate_options: no_gui
     hier_block_src_path: '.:'
-    id: Mode_S_PPM_HackRF_Fields
+    id: Mode_S_PPM_USRPX310_Fields
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -149,7 +150,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 301]
+    coordinate: [16, 292.0]
     rotation: 0
     state: enabled
 - name: library_filepath
@@ -174,18 +175,6 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [8, 160]
-    rotation: 0
-    state: enabled
-- name: serial
-  id: variable
-  parameters:
-    comment: ''
-    value: '"0"'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [8, 364]
     rotation: 0
     state: enabled
 - name: transmit_interval
@@ -227,7 +216,23 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [752, 517]
+    coordinate: [808, 516.0]
+    rotation: 0
+    state: enabled
+- name: adsb_demod_0
+  id: adsb_demod
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    fs: samp_rate
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [840, 392.0]
     rotation: 0
     state: enabled
 - name: adsb_framer_0
@@ -244,7 +249,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1000, 441]
+    coordinate: [640, 300.0]
     rotation: 0
     state: enabled
 - name: blocks_char_to_float_0
@@ -264,22 +269,20 @@ blocks:
     coordinate: [880, 44]
     rotation: 0
     state: enabled
-- name: blocks_file_sink_0
-  id: blocks_file_sink
+- name: blocks_complex_to_mag_squared_0
+  id: blocks_complex_to_mag_squared
   parameters:
     affinity: ''
     alias: ''
-    append: 'True'
     comment: ''
-    file: /dev/stdout
-    type: byte
-    unbuffered: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1112, 510]
+    coordinate: [456, 312.0]
     rotation: 0
     state: enabled
 - name: blocks_float_to_complex_0
@@ -295,24 +298,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [744, 233]
-    rotation: 0
-    state: enabled
-- name: blocks_message_source_0
-  id: blocks_message_source
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    type: byte
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [928, 529]
+    coordinate: [768, 208.0]
     rotation: 0
     state: enabled
 - name: blocks_multiply_const_vxx_0
@@ -350,6 +336,23 @@ blocks:
     coordinate: [944, 337]
     rotation: 0
     state: disabled
+- name: blocks_null_sink_1
+  id: blocks_null_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    bus_structure_sink: '[[0,],]'
+    comment: ''
+    num_inputs: '1'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1152, 496.0]
+    rotation: 0
+    state: true
 - name: blocks_null_source_0
   id: blocks_null_source
   parameters:
@@ -385,24 +388,22 @@ blocks:
     coordinate: [728, 44]
     rotation: 0
     state: enabled
-- name: digital_correlate_access_code_tag_bb_0
-  id: digital_correlate_access_code_tag_bb
+- name: filerepeater_msg_to_file_0
+  id: filerepeater_msg_to_file
   parameters:
-    access_code: '1010000101000000'
     affinity: ''
     alias: ''
     comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    tagname: adsb_preamble
-    threshold: '0'
+    file: /dev/stdout
+    overwrite: 'False'
+    timestamp: 'False'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [760, 422]
+    coordinate: [1136, 604.0]
     rotation: 0
-    state: enabled
+    state: true
 - name: fuzzer_fuzzer_0_0
   id: fuzzer_fuzzer
   parameters:
@@ -704,10 +705,25 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [944, 209]
+    coordinate: [1016, 140.0]
     rotation: 0
     state: enabled
-connections: []
+
+connections:
+- [adsb_decoder_0, decoded, filerepeater_msg_to_file_0, msg]
+- [adsb_demod_0, '0', blocks_null_sink_1, '0']
+- [adsb_demod_0, demodulated, adsb_decoder_0, demodulated]
+- [adsb_framer_0, '0', adsb_demod_0, '0']
+- [blocks_char_to_float_0, '0', blocks_multiply_const_vxx_0, '0']
+- [blocks_complex_to_mag_squared_0, '0', adsb_framer_0, '0']
+- [blocks_float_to_complex_0, '0', blocks_complex_to_mag_squared_0, '0']
+- [blocks_float_to_complex_0, '0', osmosdr_sink_1, '0']
+- [blocks_multiply_const_vxx_0, '0', blocks_float_to_complex_0, '0']
+- [blocks_null_source_0, '0', fuzzer_packet_insert_0, '0']
+- [blocks_unpack_k_bits_bb_0, '0', blocks_char_to_float_0, '0']
+- [fuzzer_fuzzer_0_0, packet_out, fuzzer_packet_insert_0, packet_in]
+- [fuzzer_packet_insert_0, '0', blocks_unpack_k_bits_bb_0, '0']
 
 metadata:
   file_format: 1
+  grc_version: v3.11.0.0git-207-gcaa7e7f1
