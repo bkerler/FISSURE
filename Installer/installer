@@ -3285,27 +3285,27 @@ sudo ldconfig
 python3 -c "import ais"
 """,True,'Out-of-Tree Modules'))
 
-# # gr-bluetooth-maint-3.10
-# programs_ubuntu22_04.append(('gr-bluetooth-maint-3.10',
-# """cd """ + fissure_directory + """/Custom_Blocks/maint-3.10/libbtbb-master/
-# sudo rm -Rf build
-# mkdir build
-# cd build
-# cmake ..
-# make
-# sudo make install
-# sudo ldconfig
-# cd """ + fissure_directory + """/Custom_Blocks/maint-3.10/gr-bluetooth-maint-3.10/
-# sudo rm -Rf build
-# mkdir build
-# cd build
-# cmake ..
-# make
-# sudo make install
-# sudo ldconfig
-# ########## Verify ##########
-# ls /usr/local/bin/btrx
-# """,True,'Out-of-Tree Modules'))
+# gr-bluetooth-maint-3.10
+programs_ubuntu22_04.append(('gr-bluetooth-maint-3.10',
+"""cd """ + fissure_directory + """/Custom_Blocks/maint-3.10/libbtbb-master/
+sudo rm -Rf build
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+sudo ldconfig
+cd """ + fissure_directory + """/Custom_Blocks/maint-3.10/gr-bluetooth/
+sudo rm -Rf build
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+sudo ldconfig
+########## Verify ##########
+ls /usr/local/bin/btrx
+""",True,'Out-of-Tree Modules'))
 
 # gr-clapper_plus-maint-3.10
 programs_ubuntu22_04.append(('gr-clapper_plus-maint-3.10',
