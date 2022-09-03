@@ -1,3 +1,7 @@
+[submodule "Custom_Blocks/maint-3.10/gr-bluetooth"]
+	path = Custom_Blocks/maint-3.10/gr-bluetooth
+	url = https://github.com/bkerler/gr-bluetooth
+	branch = maint-3.10
 [submodule "Custom_Blocks/maint-3.10/gr-adsb"]
 	path = Custom_Blocks/maint-3.10/gr-adsb
 	url = https://github.com/bkerler/gr-adsb
