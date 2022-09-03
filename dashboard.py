@@ -15534,7 +15534,7 @@ class MainWindow(QtWidgets.QMainWindow, form_class):
         """ Open gr-rds rds_rx.grc GUI for RTL2832U.
         """
         # Opens the rdx_rx without Opening GRC
-        osCommandString = "grcc " + os.path.dirname(os.path.realpath(__file__)) + "/Custom_Blocks/maint-3.10/gr-rds-maint-3.10/examples/rds_rx.grc -o " + os.path.dirname(os.path.realpath(__file__)) + "/Custom_Blocks/maint-3.10/gr-rds-maint-3.10/examples/ -r"
+        osCommandString = "grcc " + os.path.dirname(os.path.realpath(__file__)) + "/Custom_Blocks/maint-3.8/gr-rds-maint-3.8/examples/rds_rx.grc -o " + os.path.dirname(os.path.realpath(__file__)) + "/Custom_Blocks/maint-3.8/gr-rds-maint-3.8/examples/ -r"
         os.system(osCommandString+ " &")     
                               
     def _slotMenuSrsLTE_Clicked(self):
@@ -17871,7 +17871,7 @@ class MainWindow(QtWidgets.QMainWindow, form_class):
         """ Launches ais_rx.
         """
         # Issue the Command
-        ais_rx_filepath = os.path.dirname(os.path.realpath(__file__)) + "/Custom_Blocks/maint-3.10/gr-ais-master/apps/ais_rx"
+        ais_rx_filepath = os.path.dirname(os.path.realpath(__file__)) + "/Custom_Blocks/maint-3.8/gr-ais-master/apps/ais_rx"
         command_text = 'gnome-terminal -- python3 "' + ais_rx_filepath  + '" &'
         proc = subprocess.Popen(command_text, shell=True) 
         
@@ -18597,7 +18597,7 @@ class MainWindow(QtWidgets.QMainWindow, form_class):
         """
         # Issue the Command
         expect_script_filepath = os.path.dirname(os.path.realpath(__file__)) + "/Tools/expect_script" 
-        iridium_directory = os.path.dirname(os.path.realpath(__file__)) + "/Custom_Blocks/maint-3.10/gr-iridium-maint-3.10/"
+        iridium_directory = os.path.dirname(os.path.realpath(__file__)) + "/Custom_Blocks/maint-3.8/gr-iridium-maint-3.8/"
         proc=subprocess.Popen('gnome-terminal -- ' + expect_script_filepath + ' "iridium-extractor -D 4 examples/hackrf.conf | grep A:OK > ~/output.bits"', cwd=iridium_directory, shell=True)  
                 
     def _slotMenuIridiumParserClicked(self):
@@ -18605,7 +18605,7 @@ class MainWindow(QtWidgets.QMainWindow, form_class):
         """
         # Issue the Command
         expect_script_filepath = os.path.dirname(os.path.realpath(__file__)) + "/Tools/expect_script" 
-        iridium_directory = os.path.dirname(os.path.realpath(__file__)) + "/Custom_Blocks/maint-3.10/gr-iridium-maint-3.10/"
+        iridium_directory = os.path.dirname(os.path.realpath(__file__)) + "/Custom_Blocks/maint-3.8/gr-iridium-maint-3.8/"
         proc=subprocess.Popen('gnome-terminal -- ' + expect_script_filepath + ' "python2 iridium-parser.py -p ~/output.bits > ~/output.parsed"', cwd=iridium_directory, shell=True)  
             
     def _slotMenuStatsVocClicked(self):
@@ -18628,7 +18628,7 @@ class MainWindow(QtWidgets.QMainWindow, form_class):
         
         # Issue the Command for Extractor and Parser
         expect_script_filepath = os.path.dirname(os.path.realpath(__file__)) + "/Tools/expect_script" 
-        iridium_directory = os.path.dirname(os.path.realpath(__file__)) + "/Custom_Blocks/maint-3.10/gr-iridium-maint-3.10/"
+        iridium_directory = os.path.dirname(os.path.realpath(__file__)) + "/Custom_Blocks/maint-3.8/gr-iridium-maint-3.8/"
         tools_filepath = os.path.dirname(os.path.realpath(__file__)) + "/Tools/" 
         proc=subprocess.Popen('gnome-terminal -- ' + expect_script_filepath + ' "iridium-extractor --offline --multi-frame ' + iridium_directory + 'examples/hackrf.conf | ~/Installed_by_FISSURE/iridium-toolkit/iridium-parser.py -p /dev/stdin /dev/stdout | python2 ' + tools_filepath + 'IridiumLive/udp-for-il.py"', cwd=iridium_directory, shell=True) 
         

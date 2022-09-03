@@ -373,7 +373,7 @@ class FGE_Executor():
                         # A Number
                         if self.isFloat(new_value):
                             # Make Numerical Value a String
-                            if fix_strings:
+                            if fix_strings == True:
                                 if variable_name.strip() in variable_values[fix_strings_index]:
                                     new_value = '"' + new_value + '"'                                   
 
